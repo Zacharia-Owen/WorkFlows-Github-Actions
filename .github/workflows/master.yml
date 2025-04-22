@@ -1,0 +1,20 @@
+name: Hello World on PR to develop
+
+on:
+  pull_request:
+    branches:
+      - develop
+    paths-ignore:
+      - '**.md'  # optional: ignore changes to markdown files
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  say-hello:
+    if: startsWith(github.head_ref, 'feature/') # implies that you are coming from a branch that starts with the term "feature/"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "hello world"
